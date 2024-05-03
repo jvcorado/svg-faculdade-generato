@@ -5,10 +5,10 @@ function nextRect(key,draw){
 
 
     for(let i = 0; i <grid.length; i++){
-        let x = key.next4095() % 900
-        let y = key.next4095() % 900
-        let width = 100 + key.next256() 
-        let height = 100 + key.next256() 
+        let x = grid[i].x
+        let y =  grid[i].y
+        let width =  grid[i].width
+        let height =  grid[i].height 
         draw.rect().attr({
             x,y, width : width, height: height, fill: color(key.next256(), key.next16() % 7)
         })
@@ -19,13 +19,13 @@ function nextRect(key,draw){
 }
 
 function nextCircle(key,draw){
-    let cx = key.next4095() % 900
-    let cy = key.next4095() % 900
-    let cwidth = 100 + key.next256() 
-    let cheight = 100 + key.next256()
+    let x = grid[i].x
+    let y =  grid[i].y
+    let width =  grid[i].width
+    let height =  grid[i].height 
     let r = 100 + key.next16() 
     draw.circle().attr({
-        cx,cy,r, width : cwidth, height: cheight, fill: color(key.next256(), key.next16() % 7)
+        x,y,r, width : width, height: height, fill: color(key.next256(), key.next16() % 7)
     }) 
 }
 
@@ -54,10 +54,9 @@ function nextPolygon(key,draw){
 }
 
 function widget(key, draw) {
-    for(let i = 0; i <grid.length; i++){
-
+    for(let i = 0; i < 5; i++){
         nextRect(key,draw)
-   
+        nextCircle(key,draw)
     }
    
    
