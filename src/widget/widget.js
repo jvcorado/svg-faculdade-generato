@@ -1,13 +1,21 @@
 import color from "./utils/colors/color.js"
+import grid from "./utils/grids/grid01.js"
 
 function nextRect(key,draw){
-    let x = key.next4095() % 900
-    let y = key.next4095() % 900
-    let width = 100 + key.next256() 
-    let height = 100 + key.next256() 
-    draw.rect().attr({
-        x,y, width : width, height: height, fill: color(key.next256(), key.next16() % 7)
-    })
+
+
+    for(let i = 0; i <grid.length; i++){
+        let x = key.next4095() % 900
+        let y = key.next4095() % 900
+        let width = 100 + key.next256() 
+        let height = 100 + key.next256() 
+        draw.rect().attr({
+            x,y, width : width, height: height, fill: color(key.next256(), key.next16() % 7)
+        })
+    }
+   
+
+    
 }
 
 function nextCircle(key,draw){
@@ -46,10 +54,10 @@ function nextPolygon(key,draw){
 }
 
 function widget(key, draw) {
-    for(let i = 0; i <5; i++){
+    for(let i = 0; i <grid.length; i++){
+
         nextRect(key,draw)
-        nextPolygon(key,draw)
-        nextCircle(key,draw)
+   
     }
    
    
